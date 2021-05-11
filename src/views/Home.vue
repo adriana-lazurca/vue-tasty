@@ -14,7 +14,7 @@
       :name="recipe.name"
       :ingredients="recipe.ingredients"
       :instructions="recipe.instructions"
-      @add-likes="addLikes"
+      @add-like="addLike"
     />
   </b-container>
 </template>
@@ -52,8 +52,8 @@ export default {
         });
     },
 
-    addLikes(likes) {
-      this.totalLikes = likes;
+    addLike() {
+      this.totalLikes++;
     }
   },
   mounted() {
