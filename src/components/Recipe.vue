@@ -18,7 +18,7 @@
         <b-button size="sm" @click="toggle">
           {{ show ? "Hide" : "Show" }} Instructions
         </b-button>
-        <b-alert v-model="show" class="mt-3" dismissible @dismissed="dismissed">
+        <b-alert v-model="show" class="mt-3" dismissible>
           {{ instructions }}
         </b-alert>
       </div>

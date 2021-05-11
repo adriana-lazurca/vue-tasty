@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Recipe from "../components/Recipe.vue";
 
 export default {
