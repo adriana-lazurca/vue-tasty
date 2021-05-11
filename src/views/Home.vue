@@ -1,5 +1,11 @@
 <template>
   <b-container>
+    <b-row>
+      <b-col offset-sm="10"
+        >{{ totalLikes }} recipes
+        <b-icon class="h5 mb-0" icon="heart-fill"></b-icon
+      ></b-col>
+    </b-row>
     <h1 class="mt-5">Welcome to {{ restaurantName }}</h1>
     <Recipe
       v-for="recipe in recipes"
@@ -8,6 +14,7 @@
       :name="recipe.name"
       :ingredients="recipe.ingredients"
       :instructions="recipe.instructions"
+      @add-likes="addLikes"
     />
   </b-container>
 </template>
@@ -23,6 +30,7 @@ export default {
   data() {
     return {
       restaurantName: "TASTY",
+      totalLikes: 0,
       recipes: []
     };
   },
@@ -42,6 +50,10 @@ export default {
         .then(recipes => {
           this.recipes = recipes;
         });
+    },
+
+    addLikes(likes) {
+      this.totalLikes = likes;
     }
   },
   mounted() {

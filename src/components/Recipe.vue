@@ -1,9 +1,9 @@
 <template>
   <b-row class="mt-5">
     <b-col cols="6" class="recipe-item">
-      <img class="recipe-item__image" :src="image.source" :alt="image.alt" />
+      <img class="recipe-item__image rounded-pill" :src="image.source" :alt="image.alt" />
     </b-col>
-    <b-col cols="6">
+    <b-col cols="5">
       <h4>{{ name }}</h4>
       <p>Ingredients:</p>
       <ul>
@@ -22,6 +22,11 @@
           {{ instructions }}
         </b-alert>
       </div>
+    </b-col>
+    <b-col cols="1">
+      <!-- <b-button class="btn btn-outline" :click="counter += 1"><b-icon class="h6 mb-0" icon="heart-fill"></b-icon></b-button> -->
+      <button @click="updateLikes(likesNr)"><b-icon class="h5 mb-0" icon="heart-fill"></b-icon></button>
+      <p class="font-weight-light">{{likesNr}} likes</p>
     </b-col>
   </b-row>
 </template>
@@ -51,13 +56,18 @@ export default {
 
   data() {
     return {
-      show: false
+      show: false,
+      likesNr: 0
     };
   },
 
   methods: {
     toggle() {
       this.show = !this.show;
+    },
+    updateLikes(likesNr){
+       this.likesNr++;
+       this.$emit("add-likes", likesNr);
     }
   }
 };
