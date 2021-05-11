@@ -1,5 +1,6 @@
 <template>
   <b-container>
+    <h1 class="mt-5">Welcome to {{ restaurantName }}</h1>
     <Recipe
       v-for="recipe in recipes"
       :key="recipe.name"
@@ -19,54 +20,32 @@ export default {
   components: {
     Recipe
   },
-
   data() {
     return {
       restaurantName: "TASTY",
-
-      recipes: [
-        {
-          name: "Banana bread",
-          image: {
-            source: "/images/bananaBread.png",
-            alt: "Banana bread"
-          },
-          ingredients: ["1 cup of sugar", "200ml of milk", "1 egg"],
-          instructions:
-            "Cover and store banana bread at room temperature for 2 days or in the refrigerator for up to 1 week. Banana bread tastes best on day 2 after the flavors have settled together. See post above for freezing instructions."
-        },
-        {
-          name: "Cake",
-          image: {
-            source: "/images/bananaBread.png",
-            alt: "Banana bread"
-          },
-          ingredients: ["1 cup of sugar", "200ml of milk", "1 egg"],
-          instructions:
-            "Cover and store banana bread at room temperature for 2 days or in the refrigerator for up to 1 week. Banana bread tastes best on day 2 after the flavors have settled together. See post above for freezing instructions."
-        },
-        {
-          name: "Bread",
-          image: {
-            source: "/images/bananaBread.png",
-            alt: "Banana bread"
-          },
-          ingredients: ["1 cup of sugar", "200ml of milk", "1 egg"],
-          instructions:
-            "Cover and store banana bread at room temperature for 2 days or in the refrigerator for up to 1 week. Banana bread tastes best on day 2 after the flavors have settled together. See post above for freezing instructions."
-        },
-        {
-          name: "Crepes",
-          image: {
-            source: "/images/bananaBread.png",
-            alt: "Banana bread"
-          },
-          ingredients: ["1 cup of sugar", "200ml of milk", "1 egg"],
-          instructions:
-            "Cover and store banana bread at room temperature for 2 days or in the refrigerator for up to 1 week. Banana bread tastes best on day 2 after the flavors have settled together. See post above for freezing instructions."
-        }
-      ]
+      recipes: []
     };
+  },
+  methods: {
+    async setRecipesAsync() {
+      // async / await
+      const response = await fetch("recipes.json");
+      const recipes = await response.json();
+      this.recipes = recipes;
+    },
+    setRecipes() {
+      // Promise
+      fetch("recipes.json")
+        .then(response => {
+          return response.json();
+        })
+        .then(recipes => {
+          this.recipes = recipes;
+        });
+    }
+  },
+  mounted() {
+    this.setRecipesAsync();
   }
 };
 </script>
