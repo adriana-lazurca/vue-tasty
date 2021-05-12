@@ -81,11 +81,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.recipe-item {
-  //width: 50%;
-  // text-align: center;
-  //display: flex;
-}
+// .recipe-item {
+//   //width: 50%;
+//   // text-align: center;
+//   //display: flex;
+// }
 
 .recipe-item__image {
   max-width: 80%;
