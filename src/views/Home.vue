@@ -31,19 +31,23 @@ export default {
     return {
       restaurantName: "TASTY",
       totalLikes: 0,
-      recipes: []
+      recipes: [],
+      recipesUrl: "http://localhost:8000/api/v2/recipes"
     };
   },
   methods: {
     async setRecipesAsync() {
       // async / await
-      const response = await fetch("recipes.json");
+      const response = await fetch(this.recipesUrl);
+      debugger;
+      console.log(response.headers.get('nume'));
+      // todo check status
       const recipes = await response.json();
       this.recipes = recipes;
     },
     setRecipes() {
       // Promise
-      fetch("recipes.json")
+      fetch(this.recipesUrl)
         .then(response => {
           return response.json();
         })
@@ -57,6 +61,7 @@ export default {
     }
   },
   mounted() {
+    //use one of the 2 methods to fetch the data
     this.setRecipesAsync();
   }
 };
