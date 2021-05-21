@@ -39,8 +39,7 @@ export default {
     async setRecipesAsync() {
       // async / await
       const response = await fetch(this.recipesUrl);
-      debugger;
-      console.log(response.headers.get('nume'));
+      console.log(response.headers.get("nume"));
       // todo check status
       const recipes = await response.json();
       this.recipes = recipes;
